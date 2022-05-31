@@ -1,0 +1,4 @@
+Application name    LudoStruct
+API key    7f3c4b6c3b001b8a97a4976cc72b5a3b
+Shared secret    98ef61b9a21e8490f54cfdfde7e0ba8c
+Registered to    LudoStruct
