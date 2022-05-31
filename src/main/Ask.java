@@ -10,9 +10,6 @@ public class Ask {
 			//SI non get dand REQUETEApi.java
 		}
 		
-		
-		
-		
 	}
 	
 }
