@@ -15,11 +15,13 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
+import fonctions.fonctions;
+
 public class Principale {
 
 	public static void main(String[] args) {
 		
-        RequeteAPI.getTag("disco");
+        System.out.println(Ask.getTag("rock"));
     }
 		
 

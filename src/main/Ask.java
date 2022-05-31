@@ -1,15 +1,14 @@
 package main;
 
+import objets.Tag;
+
 public class Ask {
 	
-	public static void getTag(String tag) {
-		//BDD est dans la base ?
-		if (RequeteBDD.tagExist(tag)) {
-			//SI oui get dans REqueteBDD.java
-		} else {
-			//SI non get dand REQUETEApi.java
-		}
-		
+	public static Tag getTag(String tagInitial) {
+		String tag = tagInitial.replace(" ", "%20");
+		Tag t = RequeteBDD.getTag(tag);
+		if (t == null) t = RequeteAPI.getTag(tag);
+		return t;
 	}
 	
 }
