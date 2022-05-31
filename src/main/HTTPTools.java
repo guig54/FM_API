@@ -1,3 +1,4 @@
+package main;
 //package Nom-de-votre-paquet ;
 
 import java.io.BufferedReader;
