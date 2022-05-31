@@ -121,7 +121,7 @@ public class RequeteAPI {
                 Document tartiste =(Document)t.get("artist");
                 String nameArtiste=tartiste.getString("name");
                 String mbid = tartiste.getString("mbid");
-                Track trackf=new Track(tname,nameArtiste,mbid,duree,rank);
+                Track trackf=new Track(tname,nameArtiste,duree,rank);
                 ltrack.add(trackf);
             }
 

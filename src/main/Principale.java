@@ -24,8 +24,7 @@ public class Principale {
 
         //interfaces.accueil();
 		System.out.println(Ask.getArtist("booba"));
-        RequeteAPI.getTag("disco");
-        System.out.println(Ask.getAlbum("ULTRA","Booba"));
+       Ask.getAlbum("ULTRA","Booba");
 
     }
 		

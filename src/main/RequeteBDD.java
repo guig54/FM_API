@@ -149,36 +149,37 @@ public class RequeteBDD {
         boolean exist = true;
         MongoClient mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
-        MongoCollection<Document> collection = database.getCollection("GLBGS_tag");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_album");
         Document doc = null;
         Album a = null;
+        System.out.println("album :" +album + " artiste : "+artiste);
         try {
             doc = collection.find(Filters.and(Filters.eq("name", album), Filters.eq("artist", artiste))).first();
-            Document listetags = (Document) doc.get("tags");
-            ArrayList<Document> tags = (ArrayList<Document>) listetags.get("tag");
-            ArrayList<String> tagNames = new ArrayList<>();
-            for (Document o : tags) {
-                tagNames.add(o.getString("name"));
-            }
-            Document tracks = (Document) doc.get("tracks");
-            ArrayList<Document> track = (ArrayList<Document>) tracks.get("track");
-            ArrayList<Track> ltrack = new ArrayList<>();
-            for (Document t : track) {
-                int duree = 0;
-                if (t.getInteger("duration") != null)
-                    duree = t.getInteger("duration");
+            //if (doc){
+                Document listetags = (Document) doc.get("tags");
+                ArrayList<String> tagNames = (ArrayList<String>) listetags.get("name");
 
-                String tname = t.getString("name");
-                Document attr = (Document) t.get("@attr");
-                int rank = attr.getInteger("rank");
-                Document tartiste = (Document) t.get("artist");
-                String nameArtiste = tartiste.getString("name");
-                String mbid = tartiste.getString("mbid");
-                Track trackf = new Track(tname, nameArtiste, mbid, duree, rank);
-                ltrack.add(trackf);
-            }
+                Document tracks = (Document) doc.get("tracks");
+                ArrayList<Document> track = (ArrayList<Document>) tracks.get("track");
+                ArrayList<Track> ltrack = new ArrayList<>();
+                for (Document t : track) {
+                    System.out.println(t);
+                    int duree = 0;
+                    if (t.getInteger("duration") != null)
+                        duree = t.getInteger("duration");
+                    String tname = t.getString("name");
+                    int rank = t.getInteger("rank");
+                    String nameArtiste = t.getString("name");
+
+                    Track trackf = new Track(tname, nameArtiste, duree, rank);
+                    ltrack.add(trackf);
+                }
+            System.out.println("ici");
             a = new Album(doc.getString("artist"), doc.getString("mbid"), tagNames, doc.getString("name"), doc.getString("listeners"), doc.getString("playcount"), ltrack);
+
+            //}
         } catch (Exception e) {
+            System.out.println(e);
             exist = false;
         }
 

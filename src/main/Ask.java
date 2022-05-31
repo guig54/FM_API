@@ -23,7 +23,7 @@ public class Ask {
         String artiste = artisteInitial.replace(" ", "%20");
         album=album.toLowerCase();
         artiste=artiste.toLowerCase();
-        Album a = RequeteBDD.getAlbum("Feu","Nekfeu");
+        Album a = RequeteBDD.getAlbum(album,artiste);
         if (a == null) a = RequeteAPI.getAlbum(album,artiste);
         return a;
     }

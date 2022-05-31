@@ -9,10 +9,9 @@ public class Track {
     private int duration,rank;
 
 
-    public Track(String name, String nameArtiste, String mbid, int duration, int rank) {
+    public Track(String name, String nameArtiste, int duration, int rank) {
         this.name = name;
         this.nameArtiste = nameArtiste;
-        this.mbid = mbid;
         this.duration = duration;
         this.rank = rank;
     }
