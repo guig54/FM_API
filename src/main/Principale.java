@@ -16,12 +16,14 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
 import fonctions.fonctions;
+import fonctions.interfaces;
 
 public class Principale {
 
 	public static void main(String[] args) {
 		
-        System.out.println(Ask.getTag("rock"));
+        //interfaces.accueil();
+		System.out.println(Ask.getArtist("booba"));
     }
 		
 

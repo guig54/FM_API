@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
 import org.bson.Document;
@@ -14,7 +16,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 
-import objets.Tag;
+import fonctions.fonctions;
+import objets.*;
 
 public class RequeteBDD {
 	
@@ -52,6 +55,30 @@ public class RequeteBDD {
 		return t;
 	}
 	
+	public static Artist getArtist(String artist) {
+		System.out.println("BDD "+artist);
+		boolean exist = true;
+		MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_artist");
+        Document doc = null;
+        Artist a = null;
+		try {
+			doc = collection.find(Filters.eq("name", artist)).first();
+			Document bio = (Document) doc.get("bio");
+			Document sim = (Document) doc.get("similar");
+			Document tags = (Document) doc.get("tags");
+			a = new Artist(doc.getString("name"),(ArrayList<String>)sim.get("name"),doc.getInteger("ecoute"),doc.getInteger("fans"),(ArrayList<String>)tags.get("name"),
+					bio.getString("dateBio"),bio.getString("summaryBio"),bio.getString("contentBio"));
+			
+		} catch (Exception e) {
+			
+			exist = false;
+		}
+		
+		return a;
+	}
+	
 	//insert
 	
 	public static boolean addTag(Document doc) {
@@ -68,6 +95,7 @@ public class RequeteBDD {
 		return success;
 	}
 	
+	
 	public static boolean addTag(Tag tag) {
 		return addTag(new Document()
 				.append("name", tag.getName())
@@ -77,5 +105,40 @@ public class RequeteBDD {
 						.append("summary", tag.getSummary())
 						.append("content", tag.getContent()))
 				);
+	}
+	
+	public static boolean addArtist(Artist artist) {
+		Document artistDoc = new Document()
+				.append("name", artist.getName())
+				.append("ecoute", artist.getEcoute())
+				.append("fans", artist.getFans())
+				.append("bio", new Document()
+						.append("dateBio", artist.getDateBio())
+						.append("summaryBio", artist.getSummaryBio())
+						.append("contentBio", artist.getContentBio())
+				);
+		Document sim = new Document();
+		sim.append("name", artist.getSimilaires());
+		Document tags = new Document();
+		tags.append("name", artist.getTags());
+		
+		artistDoc.append("similar", sim);
+		artistDoc.append("tags", tags);
+		
+		return addArtist(artistDoc);
+	}
+	
+	public static boolean addArtist(Document doc) {
+		boolean success = true;
+		MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_artist");
+        try {
+        	InsertOneResult result = collection.insertOne(doc);
+        } catch (Exception e) {
+        	success = false;
+        }
+        
+		return success;
 	}
 }

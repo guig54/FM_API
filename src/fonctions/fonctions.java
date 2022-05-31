@@ -1,7 +1,10 @@
 package fonctions;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.bson.Document;
 
 public class fonctions {
 public static Scanner sc = new Scanner(System.in);
@@ -32,7 +35,7 @@ public static Scanner sc = new Scanner(System.in);
 				sc.nextLine();
 			}
 		}
-        return sc.next();
+        return sc.nextLine();
 	}
 	
 	//Crypte le mot au format sha256
@@ -54,13 +57,20 @@ public static Scanner sc = new Scanner(System.in);
 	    }
 	}
 	
+	public static ArrayList<String> documentToNameArray(ArrayList<Document> d) {
+		System.out.println("Yiiiii chakal");
+		System.out.println(d);
+		ArrayList<String> res = new ArrayList<String>();
+		for(Document elem : d) {
+			res.add(elem.getString("name"));
+		}
+		System.out.println("DocToArray : "+res);
+		return res;
+	}
+	
 	public static String replaceSpace(String s) {
 		String[] arr = s.split(" ");
 		String n = "";
-		/*
-		for(String mot : arr) {
-			n += mot+"%20";
-		}*/
 		for(int i = 0; i<arr.length-1;i++ ) {
 			n += arr[i]+"%20";
 		}
