@@ -23,8 +23,13 @@ public class Principale {
 	public static void main(String[] args) {
 
         //interfaces.accueil();
-		System.out.println(Ask.getArtist("booba"));
-       Ask.getAlbum("ULTRA","Booba");
+        // System.out.println(Ask.getArtist("booba"));
+        // Ask.getAlbum("ULTRA","Booba");
+        //RequeteAPI.getTop10Global();
+        //RequeteAPI.getTop10Geo("france");
+        RequeteAPI.getTop10Monde();
+
+
 
     }
 		
