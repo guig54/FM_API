@@ -1,9 +1,11 @@
+import org.bson.Document;
 
 public class Principale {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Document a = Test.getTrackInfo("caca");
+		System.out.println(a);
+		
 	}
 
 }
