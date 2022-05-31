@@ -18,7 +18,7 @@ import com.mongodb.client.model.Filters;
 public class Principale {
 
 	public static void main(String[] args) {
-		
+		Ask.getTag("rock");
         
     }
 		
