@@ -18,7 +18,13 @@ import com.mongodb.client.model.Filters;
 public class Principale {
 
 	public static void main(String[] args) {
+
         RequeteAPI.getTag("disco");
+
+
+        System.out.println(Ask.getAlbum("Feu","Nekfeu"));
+
+
     }
 		
 

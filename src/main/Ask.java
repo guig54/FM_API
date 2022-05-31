@@ -1,19 +1,36 @@
 package main;
 
+
 import org.bson.Document;
 
-public class Ask {
-	
-	public static void getTag(String tag) {
-		//BDD est dans la base ?
-		//if (RequeteBDD.tagExist(tag)) {
-			//SI oui get dans REqueteBDD.java
-		//} else {
-            RequeteAPI.getTag(tag);
 
-            //ajouter res à la bdd
-		//}
-		
+import objets.Album;
+import objets.Tag;
+
+
+import java.util.Locale;
+
+public class Ask {
+
+
+	public static Tag getTag(String tagInitial) {
+		String tag = tagInitial.replace(" ", "%20");
+		Tag t = RequeteBDD.getTag(tag);
+		if (t == null) t = RequeteAPI.getTag(tag);
+		return t;
+
 	}
+
+    public static Album getAlbum(String albumInitial,String artisteInitial){
+
+
+        String album = albumInitial.replace(" ", "%20");
+        String artiste = artisteInitial.replace(" ", "%20");
+        album=album.toLowerCase();
+        artiste=artiste.toLowerCase();
+        Album a = RequeteBDD.getAlbum("Feu","Nekfeu");
+        if (a == null) a = RequeteAPI.getAlbum(album,artiste);
+        return a;
+    }
 	
 }
