@@ -1,6 +1,10 @@
+package tests;
+
 import org.bson.Document;
 
-public class Test {
+import main.HTTPTools;
+
+public class HTMLTest {
 	
 	public static Document getTrackInfo(String artist) {
 		Document res = null;
