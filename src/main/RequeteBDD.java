@@ -12,6 +12,18 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 public class RequeteBDD {
+	
+	public static boolean connexion(String pseudo, String mdp) {
+		boolean success = false;
+		
+		return success;
+	}
+	
+	public static boolean inscription(String pseudo, String mdp) {
+		boolean success = false;
+		
+		return success;
+	}
 
 
     public MongoCollection<Document> getTag(){
@@ -36,10 +48,4 @@ public class RequeteBDD {
 		return exist;
 	}
 
-    public static void addTag(Document res) {
-        BasicDBObject document = res;
-        document.put("name", "Shubham");
-        document.put("company", "Baeldung");
-        collection.insert(document);
-    }
 }
