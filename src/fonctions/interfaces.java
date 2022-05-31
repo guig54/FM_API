@@ -5,7 +5,15 @@ import main.Ask;
 public class interfaces {
 	
 	public static void accueil() {
+		int choix = fonctions.entreeInt();
+		switch(choix) {
+		case 1:
+			break;
 		
+		case 2:
+			break;
+			
+		}
 	}
 
 

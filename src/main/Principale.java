@@ -21,9 +21,12 @@ import fonctions.interfaces;
 public class Principale {
 
 	public static void main(String[] args) {
-		
+
         //interfaces.accueil();
 		System.out.println(Ask.getArtist("booba"));
+        RequeteAPI.getTag("disco");
+        System.out.println(Ask.getAlbum("ULTRA","Booba"));
+
     }
 		
 
