@@ -4,7 +4,8 @@ import objets.*;
 
 
 public class Ask {
-	
+	//Classe servant à discerner si on recupère une requete sur l'API ou la BDD
+	//Si on fait une requete toujours sur l'API ou toujour sur la BDD on ira sur les classes respectifs
 
 	public static Tag getTag(String tagInitial) {
 		String tag = tagInitial.replace(" ", "%20").toLowerCase();

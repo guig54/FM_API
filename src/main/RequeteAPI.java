@@ -76,9 +76,6 @@ public class RequeteAPI {
 				tagsString.add(o.getString("name"));
 			}
 			Document bio = (Document)doc.get("bio");
-			System.out.println(simiString);
-			System.out.println(tagsString);
-			System.out.println(stats.getString("playcount"));
 			res = new Artist(doc.getString("name").toLowerCase(),simiString,stats.getString("playcount"),stats.getString("listeners"),tagsString,bio.getString("published"),bio.getString("summary"),bio.getString("content"));
 		} catch (Exception e) {
 			System.out.println(e);

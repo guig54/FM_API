@@ -21,10 +21,10 @@ import fonctions.interfaces;
 public class Principale {
 
 	public static void main(String[] args) {
-
-        //interfaces.accueil();
-		System.out.println(Ask.getArtist("booba"));
-       Ask.getAlbum("ULTRA","Booba");
+		RequeteBDD.inscription("root", "root");
+        interfaces.accueil();
+		//System.out.println(Ask.getArtist("booba"));
+        //Ask.getAlbum("ULTRA","Booba");
 
     }
 		

@@ -26,14 +26,47 @@ public class RequeteBDD {
 
 
     public static boolean connexion(String pseudo, String mdp) {
-        boolean success = false;
+        boolean success = true;
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_users");
+        Document doc = null;
+        try {
+			doc = collection.find(Filters.and(Filters.eq("pseudo", pseudo),Filters.eq("mdp", fonctions.sha256(mdp)))).first();
+		} catch (Exception e) {
+			System.out.println(e);
+			success = false;
+		}
+		if (doc == null) {
+			success = false;
+		}
 
         return success;
     }
 
     public static boolean inscription(String pseudo, String mdp) {
         boolean success = false;
-
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_users");
+        Document doc = null;
+        try {
+			doc = collection.find(Filters.eq("pseudo", pseudo)).first();
+		} catch (Exception e) {
+			System.out.println(e);
+			success = false;
+		}
+		if (doc == null) {
+			success = true;
+	        try {
+	        	Document client = new Document().append("pseudo", pseudo).append("mdp", fonctions.sha256(mdp));
+	            InsertOneResult result = collection.insertOne(client);
+	        } catch (Exception e) {
+	        	System.out.println(e);
+	            success = false;
+	        }
+			//creer compte
+		}
         return success;
     }
 
@@ -81,6 +114,7 @@ public class RequeteBDD {
 	}
 	
 	//insert
+	
 	
 	public static boolean addTag(Document doc) {
 		boolean success = true;
