@@ -19,6 +19,9 @@ import org.bson.conversions.Bson;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import fonctions.fonctions;
+import objets.Tag;
+
 public class RequeteAPI {
 
 
@@ -34,17 +37,11 @@ public class RequeteAPI {
 			String url = "http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag="+tag+"&api_key="+API_KEY+"&format=json";
 			HTTPTools httpTools = new HTTPTools();
 			String jsonResponse = httpTools.sendGet(url);
-			Document docLastFm = Document.parse(jsonResponse);
-			//System.out.println(docLastFm.get("tag"));
-			Document sousDoc = (Document)docLastFm.get("tag");
 
-            collection.insertOne(sousDoc);
-
-			System.out.println(sousDoc.get("name",String.class));
-			System.out.println(sousDoc.get("total",Integer.class));
-			Document wiki = (Document)sousDoc.get("wiki");
-			System.out.println(wiki.get("summary"));
-			//res = docLastFm;
+			Document enveloppe = Document.parse(jsonResponse);
+			Document doc = (Document)enveloppe.get("tag");
+			Document wiki = (Document)doc.get("wiki");
+			res = new Tag(doc.getString("name"),doc.getInteger("total"),doc.getInteger("reach"),wiki.getString("summary"),doc.getString("content"));
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -52,12 +49,10 @@ public class RequeteAPI {
 
 		
 
-
-
-
 		RequeteBDD.addTag(res);
-
+		
 		return res;
+		
 
 	}
 

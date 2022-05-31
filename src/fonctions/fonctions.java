@@ -53,4 +53,18 @@ public static Scanner sc = new Scanner(System.in);
 	       throw new RuntimeException(ex);
 	    }
 	}
+	
+	public static String replaceSpace(String s) {
+		String[] arr = s.split(" ");
+		String n = "";
+		/*
+		for(String mot : arr) {
+			n += mot+"%20";
+		}*/
+		for(int i = 0; i<arr.length-1;i++ ) {
+			n += arr[i]+"%20";
+		}
+		n+=arr[arr.length-1];
+		return n;
+	}
 }

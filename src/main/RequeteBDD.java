@@ -2,6 +2,7 @@ package main;
 
 
 
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
@@ -56,6 +57,7 @@ public class RequeteBDD {
         MongoCollection<Document> collection = database.getCollection("GLBGS_tag");
         Document doc = null;
         Tag t = null;
+
         try {
             doc = collection.find(Filters.eq("name", tag)).first();
             Document wiki = (Document) doc.get("wiki");
@@ -94,7 +96,7 @@ public class RequeteBDD {
         );
     }
 
-    public static Album getAlbum(String album,String artiste) {
+    public static Album getAlbum(String album, String artiste) {
         System.out.println("BDD " + album);
         boolean exist = true;
         MongoClient mongoClient = MongoClients.create(uri);
@@ -103,16 +105,16 @@ public class RequeteBDD {
         Document doc = null;
         Album a = null;
         try {
-            doc = collection.find(Filters.and(Filters.eq("name", album),Filters.eq("artist",artiste))).first();
+            doc = collection.find(Filters.and(Filters.eq("name", album), Filters.eq("artist", artiste))).first();
             Document listetags = (Document) doc.get("tags");
             ArrayList<Document> tags = (ArrayList<Document>) listetags.get("tag");
-            ArrayList<String>  tagNames=new ArrayList<>();
-            for(Document o : tags) {
+            ArrayList<String> tagNames = new ArrayList<>();
+            for (Document o : tags) {
                 tagNames.add(o.getString("name"));
             }
-            Document tracks=(Document)doc.get("tracks");
+            Document tracks = (Document) doc.get("tracks");
             ArrayList<Document> track = (ArrayList<Document>) tracks.get("track");
-            ArrayList<Track> ltrack=new ArrayList<>();
+            ArrayList<Track> ltrack = new ArrayList<>();
             for (Document t : track) {
                 int duree = 0;
                 if (t.getInteger("duration") != null)
@@ -127,7 +129,7 @@ public class RequeteBDD {
                 Track trackf = new Track(tname, nameArtiste, mbid, duree, rank);
                 ltrack.add(trackf);
             }
-            a = new Album(doc.getString("artist"),doc.getString("mbid"),tagNames,doc.getString("name"),doc.getString("listeners"),doc.getString("playcount"),ltrack);
+            a = new Album(doc.getString("artist"), doc.getString("mbid"), tagNames, doc.getString("name"), doc.getString("listeners"), doc.getString("playcount"), ltrack);
         } catch (Exception e) {
             exist = false;
         }
@@ -150,32 +152,31 @@ public class RequeteBDD {
     }
 
     public static boolean addAlbum(Album album) {
-        Document albumDoc=(new Document()
+        Document albumDoc = (new Document()
                 .append("artist", album.getArtist())
                 .append("mbid", album.getMbid())
         );
-        Document tags=new Document();
-        tags.append("name",album.getTname());
+        Document tags = new Document();
+        tags.append("name", album.getTname());
 
-        albumDoc.append("name",album.getName());
-        Document tracks=new Document();
-        ArrayList<Document> ltrack=new ArrayList<Document>();
-        for (Track t : album.getTracks()){
+        albumDoc.append("name", album.getName());
+        Document tracks = new Document();
+        ArrayList<Document> ltrack = new ArrayList<Document>();
+        for (Track t : album.getTracks()) {
             ltrack.add(new Document()
-                    .append("duration",t.getDuration())
-                    .append("name",t.getName())
-                    .append("rank",t.getRank())
+                    .append("duration", t.getDuration())
+                    .append("name", t.getName())
+                    .append("rank", t.getRank())
             );
         }
         tracks.append("track", ltrack);
-        albumDoc.append("listeners",album.getListeners());
-        albumDoc.append("playcount",album.getPlaycount());
+        albumDoc.append("listeners", album.getListeners());
+        albumDoc.append("playcount", album.getPlaycount());
 
-        albumDoc.append("tags",tags);
-        albumDoc.append("tracks",tracks);
+        albumDoc.append("tags", tags);
+        albumDoc.append("tracks", tracks);
 
         return addAlbum(albumDoc);
     }
 
 }
-

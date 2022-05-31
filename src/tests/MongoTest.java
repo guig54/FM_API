@@ -23,7 +23,7 @@ public class MongoTest {
 		//MongoClient mongoClient = MongoClients.create("mongodb://<username>:<password>@<hostname>:<port>/?authSource=<authenticationDb>");
 		String uri = "mongodb://localhost:27017";
         MongoClient mongoClient = MongoClients.create(uri);
-        MongoDatabase database = mongoClient.getDatabase("testAvantGo");
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
         try {
             Bson command = new BsonDocument("ping", new BsonInt64(1));
             Document commandResult = database.runCommand(command);
@@ -31,7 +31,7 @@ public class MongoTest {
         } catch (MongoException me) {
             System.err.println("An error occurred while attempting to run a command: " + me);
         }
-        MongoCollection<Document> collection = database.getCollection("utilisateurs");
+        MongoCollection<Document> collection = database.getCollection("GLBDS_tag");
         //find rend tout les resultats et faut faire .first() pour le premier et voir pour le reste
         System.out.println(collection.find());
       //db.getCollection("customers").find({});
