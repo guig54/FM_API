@@ -1,6 +1,11 @@
 package main;
 
+import fonctions.interfaces;
 import objets.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
+import java.util.Locale;
 
 
 public class Ask {
@@ -35,5 +40,17 @@ public class Ask {
 		if (a == null) a = RequeteAPI.getArtist(artist);
 		return a;
 	}
+
+    public static void getTopMonde(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        TopArt ta=RequeteBDD.getTopMondeBdd("2022/05/31");
+        if (ta==null){
+            TopArt ta_new= RequeteAPI.getTop10Monde(date);
+            interfaces.classement(ta_new.getLartiste(),ta_new.getLartiste());
+        }
+
+    }
 	
 }
