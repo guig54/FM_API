@@ -164,57 +164,60 @@ public class RequeteAPI {
 
     }
 
-    public static TopArt getTop10Monde(String date){
-        ArrayList<String> resArt= new ArrayList<>();
-        String url="http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key="+API_KEY+"&format=json&limit=10";
+    public static TopArt getTop10Monde(String date) {
+        ArrayList<String> resArt = new ArrayList<>();
+        String url = "http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=" + API_KEY + "&format=json&limit=10";
         HTTPTools httpTools = new HTTPTools();
         String jsonResponse = httpTools.sendGet(url);
         Document res = Document.parse(jsonResponse);
-        Document artists=(Document) res.get("artists");
-        ArrayList<Document> lart= (ArrayList<Document>) artists.get("artist");
+        Document artists = (Document) res.get("artists");
+        ArrayList<Document> lart = (ArrayList<Document>) artists.get("artist");
 
         System.out.println("-TOP ARTISTES MONDE-");
-        int i=1;
-        for(Document a :lart){
-           // System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
+        int i = 1;
+        for (Document a : lart) {
+            // System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
             i++;
             resArt.add(a.getString("name"));
         }
-        TopArt ta=new TopArt(date,resArt);
+        TopArt ta = new TopArt(date, resArt);
         RequeteBDD.addTopArt(ta);
         System.out.println(ta);
+        return ta;
+    }
 
-
-
-       /* System.out.println(" ");
-        url="http://ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key="+API_KEY+"&format=json&limit=10";
-        jsonResponse = httpTools.sendGet(url);
-        res = Document.parse(jsonResponse);
-        Document tags=(Document) res.get("tags");
-        ArrayList<Document> ltag= (ArrayList<Document>) tags.get("tag");
+    public void getTopTags() {
+        System.out.println(" ");
+        String url = "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key=" + API_KEY + "&format=json&limit=10";
+        HTTPTools httpTools = new HTTPTools();
+        String jsonResponse = httpTools.sendGet(url);
+        Document res = Document.parse(jsonResponse);
+        Document tags = (Document) res.get("tags");
+        ArrayList<Document> ltag = (ArrayList<Document>) tags.get("tag");
         System.out.println("-TOP TAGS MONDE-");
-        int j=1;
-        for(Document a :ltag){
-          //  System.out.println(j+"."+a.getString("name"));
-
-            j++;
+        int j = 1;
+            for (Document a : ltag) {
+                System.out.println(j+"."+a.getString("name"));
+                j++;
+            }
         }
 
-
+    public void getTopTracks(){
         System.out.println(" ");
-        url="http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+API_KEY+"&format=json&limit=10";
-        jsonResponse = httpTools.sendGet(url);
-        res = Document.parse(jsonResponse);
+        String url="http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+API_KEY+"&format=json&limit=10";
+        HTTPTools httpTools = new HTTPTools();
+        String jsonResponse = httpTools.sendGet(url);
+        Document res = Document.parse(jsonResponse);
         Document musique=(Document) res.get("tracks");
         ArrayList<Document> lmusique= (ArrayList<Document>) musique.get("track");
         System.out.println("-TOP MUSIQUES MONDE-");
         int k=1;
         for(Document a :lmusique){
             Document art= (Document) a.get("artist");
-            //System.out.println(k+"."+a.getString("name")+" - "+art.get("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
+            System.out.println(k+"."+a.getString("name")+" - "+art.get("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
             k++;
-        }*/
-        return ta;
+        }
+
     }
 
 

@@ -5,6 +5,8 @@ import objets.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Locale;
 
 
@@ -45,10 +47,13 @@ public class Ask {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
         String date = dtf.format(now);
-        TopArt ta=RequeteBDD.getTopMondeBdd("2022/05/31");
+        TopArt ta=RequeteBDD.getTopMondeBdd("2020/06/30");
         if (ta==null){
+            TopArt ta_old=RequeteBDD.getAncienTopMondeBdd();
             TopArt ta_new= RequeteAPI.getTop10Monde(date);
-            interfaces.classement(ta_new.getLartiste(),ta_new.getLartiste());
+            Collections.shuffle(ta_old.getLartiste());
+            System.out.println("la nouvelle  :" +ta_new+ "\n-------\n avant :  "+ta_old);
+            interfaces.classement(ta_old.getLartiste(),ta_new.getLartiste());
         }
 
     }

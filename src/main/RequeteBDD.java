@@ -19,6 +19,7 @@ import fonctions.fonctions;
 import objets.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RequeteBDD {
 
@@ -284,7 +285,29 @@ public class RequeteBDD {
         return addTopArt(topArtDoc);
     }
 
+    public static TopArt getAncienTopMondeBdd() {
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_top_artistes");
+        Document doc = null;
+        TopArt t=null;
+        try {
+            doc = collection.find().first();
+            if(doc==null){
+                ArrayList<String> lvide=new ArrayList<>(10);
+                String date="0000/00/00";
+                t=new TopArt(date,lvide);
+            }else {
+                String date = doc.getString("date");
+                ArrayList<String> lartiste = (ArrayList<String>) doc.get("top_artiste");
+                t = new TopArt(date, lartiste);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
 
+        return t;
+    }
     public static TopArt getTopMondeBdd(String date) {
         MongoClient mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
@@ -297,7 +320,7 @@ public class RequeteBDD {
             t=new TopArt(date,lartiste);
             System.out.println("liste que je mets dans la bdd ---- "+t);
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("bonjour je suis l'erreur");
         }
 
         return t;

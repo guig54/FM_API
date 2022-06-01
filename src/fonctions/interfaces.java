@@ -80,9 +80,9 @@ public class interfaces {
 		System.out.println(Ask.getTag(tag));
 		pause_hub();
 	}
-	
+
 	public static void choixArtist() {
-		
+
 	}
 	
 	
@@ -97,17 +97,16 @@ public class interfaces {
         for (int i=0;i<10;i++){
             String n=nouveau.get(i);
             if(ancien.contains(n)){
-                if(ancien.indexOf(n)==i){
+               int index= ancien.indexOf(n);
+                if(index==i){
                     System.out.println((i+1)+"."+n+" ==");
-                }
-                if(ancien.indexOf(n)>i){
-                    System.out.println((i+1)+"."+n+" ++");
-                }
-                if(ancien.indexOf(n)<i){
-                    System.out.println((i+1)+"."+n+" --");
+                }else if(index>i){
+                    System.out.println((i+1)+"."+n+" (+"+(index-i)+")");
+                }else{
+                    System.out.println((i+1)+"."+n+" ("+(index-i)+")");
                 }
             }else
-                System.out.println(i+1+"."+n+" **");
+                System.out.println(i+1+"."+n+" ** NEW");
         }
     }
 }
