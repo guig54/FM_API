@@ -165,4 +165,13 @@ public class interfaces {
                 System.out.println(i+1+"."+n+" ** NEW");
         }
     }
+    public static void classement(ArrayList<String> la){
+        int i=1;
+        for (String a : la){
+            System.out.println((i+1)+"."+a);
+            i++;
+        }
+    }
 }
+
+

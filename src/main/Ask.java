@@ -55,7 +55,8 @@ public class Ask {
             System.out.println("Classement du "+ta_new.getDate()+" ("+"ancien classement : "+ta_old.getDate()+")");
             interfaces.classement(ta_old.getLartiste(),ta_new.getLartiste());
         } else {
-
+            System.out.println("Le classement est toujours le même");
+            interfaces.classement(ta.getLartiste());
         }
 
     }
