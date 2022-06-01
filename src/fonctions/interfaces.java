@@ -1,5 +1,7 @@
 package fonctions;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,12 +52,15 @@ public class interfaces {
 			album();
 			break;
 		case 4:
-			RequeteAPI.getTop10Monde();
+            Ask.getTopMonde();
+            RequeteAPI.getTopTracks();
+            RequeteAPI.getTopTags();
 			pause_hub();
 			break;
 		case 5:
 			topPays();
 			break;
+
 		default:
 			hub();
 		}

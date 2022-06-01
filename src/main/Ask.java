@@ -47,7 +47,7 @@ public class Ask {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
         String date = dtf.format(now);
-        TopArt ta=RequeteBDD.getTopMondeBdd("2020/06/30");
+        TopArt ta=RequeteBDD.getTopMondeBdd(date);
         if (ta==null){
             TopArt ta_old=RequeteBDD.getAncienTopMondeBdd();
             TopArt ta_new= RequeteAPI.getTop10Monde(date);

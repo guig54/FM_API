@@ -16,7 +16,6 @@ import org.bson.conversions.Bson;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import fonctions.fonctions;
 import objets.*;
 
 import javax.print.Doc;
@@ -176,7 +175,7 @@ public class RequeteAPI {
         System.out.println("-TOP ARTISTES MONDE-");
         int i = 1;
         for (Document a : lart) {
-            // System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
+            System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
             i++;
             resArt.add(a.getString("name"));
         }
@@ -186,7 +185,9 @@ public class RequeteAPI {
         return ta;
     }
 
-    public void getTopTags() {
+
+
+    public static void getTopTags() {
         System.out.println(" ");
         String url = "http://ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key=" + API_KEY + "&format=json&limit=10";
         HTTPTools httpTools = new HTTPTools();
@@ -202,7 +203,7 @@ public class RequeteAPI {
             }
         }
 
-    public void getTopTracks(){
+    public static void getTopTracks(){
         System.out.println(" ");
         String url="http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+API_KEY+"&format=json&limit=10";
         HTTPTools httpTools = new HTTPTools();
