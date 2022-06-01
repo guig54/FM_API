@@ -314,9 +314,8 @@ public class RequeteBDD {
             doc = collection.find(Filters.eq("date", date)).first();
             ArrayList<String> lartiste = (ArrayList<String>) doc.get("top_artiste");
             t=new TopArt(date,lartiste);
-            System.out.println("liste que je mets dans la bdd ---- "+t);
         }catch (Exception e){
-            System.out.println("bonjour je suis l'erreur");
+            
         }
 
         return t;

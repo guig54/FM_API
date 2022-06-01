@@ -52,8 +52,10 @@ public class Ask {
             TopArt ta_old=RequeteBDD.getAncienTopMondeBdd();
             TopArt ta_new= RequeteAPI.getTop10Monde(date);
             Collections.shuffle(ta_old.getLartiste());
-            System.out.println("la nouvelle  :" +ta_new+ "\n-------\n avant :  "+ta_old);
+            System.out.println("Classement du "+ta_new.getDate()+" ("+"ancien classement : "+ta_old.getDate()+")");
             interfaces.classement(ta_old.getLartiste(),ta_new.getLartiste());
+        } else {
+
         }
 
     }

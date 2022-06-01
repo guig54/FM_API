@@ -150,7 +150,6 @@ public class interfaces {
 	}
 
     public static void classement(ArrayList<String> ancien,ArrayList<String> nouveau){
-
         for (int i=0;i<10;i++){
             String n=nouveau.get(i);
             if(ancien.contains(n)){
