@@ -102,9 +102,15 @@ public class Artist {
 
 	@Override
 	public String toString() {
-		return "Artist [name=" + name + ", similaires=" + similaires + ", ecoute=" + ecoute + ", fans=" + fans
-				+ ", tags=" + tags + ", dateBio=" + dateBio + ", summaryBio=" + summaryBio
-				+ ", contentBio=" + contentBio + "]";
+		return "Nom : "+name+
+				"\n Artistes similaires : "+similaires+
+				"\n Nombre d'écoute : "+ecoute+
+				"\n Nombre de fans : "+fans+
+				"\n Tags de l'artiste : "+tags+
+				"\n Biographie : \n"+
+				"\n date : "+dateBio+
+				"\n resume : "+summaryBio+
+				"\n contenu : "+contentBio;
 	}
 	
 	

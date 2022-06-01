@@ -90,7 +90,6 @@ public class RequeteBDD {
 	}
 	
 	public static Artist getArtist(String artist) {
-		System.out.println("BDD "+artist);
 		boolean exist = true;
 		MongoClient mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
@@ -186,7 +185,6 @@ public class RequeteBDD {
         MongoCollection<Document> collection = database.getCollection("GLBGS_album");
         Document doc = null;
         Album a = null;
-        System.out.println("album :" +album + " artiste : "+artiste);
         try {
             doc = collection.find(Filters.and(Filters.eq("name", album), Filters.eq("artist", artiste))).first();
             //if (doc){
@@ -197,7 +195,6 @@ public class RequeteBDD {
                 ArrayList<Document> track = (ArrayList<Document>) tracks.get("track");
                 ArrayList<Track> ltrack = new ArrayList<>();
                 for (Document t : track) {
-                    System.out.println(t);
                     int duree = 0;
                     if (t.getInteger("duration") != null)
                         duree = t.getInteger("duration");
@@ -208,12 +205,10 @@ public class RequeteBDD {
                     Track trackf = new Track(tname, nameArtiste, duree, rank);
                     ltrack.add(trackf);
                 }
-            System.out.println("ici");
             a = new Album(doc.getString("artist"), doc.getString("mbid"), tagNames, doc.getString("name"), doc.getString("listeners"), doc.getString("playcount"), ltrack);
 
             //}
         } catch (Exception e) {
-            System.out.println(e);
             exist = false;
         }
 

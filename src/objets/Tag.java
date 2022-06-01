@@ -15,8 +15,11 @@ public class Tag {
 
 	@Override
 	public String toString() {
-		return "Tag [name=" + name + ", summary=" + summary + ", content=" + content + ", total=" + total + ", reach="
-				+ reach + "]";
+		return "Nom : "+name
+				+"\nresume : "+summary
+				+"\ndescription : "+content
+				+"\nnombre de mention : "+total
+				+"\nnombre de personne en parlant : "+reach;
 	}
 
 	public String getName() {

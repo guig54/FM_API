@@ -21,7 +21,7 @@ import fonctions.interfaces;
 public class Principale {
 
 	public static void main(String[] args) {
-
+		//RequeteAPI.getTop10Monde();
 		RequeteBDD.inscription("root", "root");
         interfaces.accueil();
 		//System.out.println(Ask.getArtist("booba"));
@@ -32,7 +32,7 @@ public class Principale {
         // Ask.getAlbum("ULTRA","Booba");
         //RequeteAPI.getTop10Global();
         //RequeteAPI.getTop10Geo("france");
-        //RequeteAPI.getTop10Monde();
+        
 
 
 
