@@ -1,5 +1,6 @@
 package fonctions;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import main.Ask;
@@ -142,4 +143,23 @@ public class interfaces {
 		pause.nextLine();
 		hub();
 	}
+
+    public static void classement(ArrayList<String> ancien,ArrayList<String> nouveau){
+
+        for (int i=0;i<10;i++){
+            String n=nouveau.get(i);
+            if(ancien.contains(n)){
+                if(ancien.indexOf(n)==i){
+                    System.out.println((i+1)+"."+n+" ==");
+                }
+                if(ancien.indexOf(n)>i){
+                    System.out.println((i+1)+"."+n+" ++");
+                }
+                if(ancien.indexOf(n)<i){
+                    System.out.println((i+1)+"."+n+" --");
+                }
+            }else
+                System.out.println(i+1+"."+n+" **");
+        }
+    }
 }

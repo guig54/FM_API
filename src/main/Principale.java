@@ -21,18 +21,12 @@ import fonctions.interfaces;
 public class Principale {
 
 	public static void main(String[] args) {
+
 		//RequeteAPI.getTop10Monde();
 		RequeteBDD.inscription("root", "root");
         interfaces.accueil();
-		//System.out.println(Ask.getArtist("booba"));
-        //Ask.getAlbum("ULTRA","Booba");
 
-        //interfaces.accueil();
-        // System.out.println(Ask.getArtist("booba"));
-        // Ask.getAlbum("ULTRA","Booba");
-        //RequeteAPI.getTop10Global();
-        //RequeteAPI.getTop10Geo("france");
-        
+
 
 
 

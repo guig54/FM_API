@@ -71,6 +71,7 @@ public class RequeteBDD {
     }
 
     public static Tag getTag(String tag) {
+
         System.out.println("BDD " + tag);
         boolean exist = true;
         MongoClient mongoClient = MongoClients.create(uri);
@@ -257,4 +258,44 @@ public class RequeteBDD {
         return addAlbum(albumDoc);
     }
 
+    public static boolean addTopArt(Document doc){
+        boolean success = true;
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_top_artistes");
+        try {
+            InsertOneResult result = collection.insertOne(doc);
+        } catch (Exception e) {
+            success = false;
+        }
+
+        return success;
+    }
+
+    public static boolean addTopArt(TopArt topArt){
+        Document topArtDoc = new Document()
+                .append("date", topArt.getDate())
+                .append("top_artiste",topArt.getLartiste() );
+
+        return addTopArt(topArtDoc);
+    }
+
+
+    public static TopArt getTopMondeBdd(String date) {
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("SD2022_projet");
+        MongoCollection<Document> collection = database.getCollection("GLBGS_top_artistes");
+        Document doc = null;
+        TopArt t=null;
+        try {
+            doc = collection.find(Filters.eq("date", date)).first();
+            ArrayList<String> lartiste = (ArrayList<String>) doc.get("top_artiste");
+            t=new TopArt(date,lartiste);
+            System.out.println("liste que je mets dans la bdd ---- "+t);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        return t;
+    }
 }
