@@ -22,17 +22,11 @@ public class Principale {
 
 	public static void main(String[] args) {
 
-		//RequeteBDD.inscription("root", "root");
-        //interfaces.accueil();
-		//System.out.println(Ask.getArtist("booba"));
-        //Ask.getAlbum("ULTRA","Booba");
+		//RequeteAPI.getTop10Monde();
+		RequeteBDD.inscription("root", "root");
+        interfaces.accueil();
 
-        //interfaces.accueil();
-        // System.out.println(Ask.getArtist("booba"));
-        // Ask.getAlbum("ULTRA","Booba");
-        //RequeteAPI.getTop10Geo("france");
 
-        Ask.getTopMonde();
 
 
 

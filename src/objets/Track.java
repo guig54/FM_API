@@ -58,12 +58,12 @@ public class Track {
 
     @Override
     public String toString() {
-        return "Track{" +
-                "name='" + name + '\'' +
-                ", nameArtiste='" + nameArtiste + '\'' +
-                ", mbid='" + mbid + '\'' +
-                ", duration=" + duration +
-                ", rank=" + rank +
+        return "Track : " +
+                "\nnom='" + name + '\'' +
+                ", \nnom de l'artiste : '" + nameArtiste + '\'' +
+                ", \nmbid='" + mbid + '\'' +
+                ", \nduration=" + duration +
+                ", \nrang : " + rank +
                 '}';
     }
 }

@@ -38,8 +38,8 @@ public class RequeteAPI {
 
 			Document enveloppe = Document.parse(jsonResponse);
 			Document doc = (Document)enveloppe.get("tag");
-			Document wiki = (Document)doc.get("wiki");
-			res = new Tag(doc.getString("name"),doc.getInteger("total"),doc.getInteger("reach"),wiki.getString("summary"),doc.getString("content"));
+			Document wiki = (Document)doc.get("wiki");	
+			res = new Tag(doc.getString("name"),doc.getInteger("total"),doc.getInteger("reach"),wiki.getString("summary"),wiki.getString("content"));
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -126,7 +126,7 @@ public class RequeteAPI {
             res = new Album(doc.getString("artist").toLowerCase(),doc.getString("mbid"),tagNames,doc.getString("name").toLowerCase(),doc.getString("listeners"),doc.getString("playcount"),ltrack);
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Album inexistant");
         }
 
         RequeteBDD.addAlbum(res);
@@ -144,7 +144,7 @@ public class RequeteAPI {
         int i=1;
         System.out.println("-TOP ARTISTE-");
         for(Document a :lart){
-            System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
+            System.out.println(i+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+")");
             i++;
         }
 
@@ -158,7 +158,7 @@ public class RequeteAPI {
         int j=1;
         System.out.println("-TOP MUSIQUE-");
         for(Document a :lalbum){
-            System.out.println(j+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+" - nombre d'ecoute:"+a.get("playcount")+")");
+            System.out.println(j+"."+a.getString("name")+" ( auditeurs :"+a.get("listeners")+")");
             j++;
         }
 

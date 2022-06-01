@@ -76,14 +76,14 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" +
-                "artist='" + artist + '\'' +
-                ", mbid='" + mbid + '\'' +
-                ", name='" + name + '\'' +
-                ", tname=" + tname +
-                ", listeners=" + listeners +
-                ", playcount=" + playcount +
-                ", tracks=" + tracks +
+        return "infos sur l'album :" +
+                "\nnom artiste :'" + artist + '\'' +
+                ", \nmbid : '" + mbid + '\'' +
+                ", \nnom album  :'" + name + '\'' +
+                ", \nTags : " + tname +
+                ", \nNombre de fans : " + listeners +
+                ", \nNombre d'ecoute : " + playcount +
+                ", \ntrack list : " + tracks +
                 '}';
     }
 }
